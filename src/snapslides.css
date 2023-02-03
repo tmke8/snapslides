@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@700&display=swap');
-@import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic');
 :root {
   --slide-width: 100vw;
   --slide-height: 62.5vw;
   --main-color: #424242;
+  --main-font-size: 1rem;
+  --main-line-height: 1.3;
   --heading-color: #003B49;
   --heading-font-weight: bold;
   --heading1-size: 3.77rem;
@@ -12,13 +14,19 @@
   --heading4-size: 1rem;
   --main-font: "Lato", sans-serif;
   --heading-font: 'Maven Pro', sans-serif;
-  --dark-background: #003B49;
-  --math-color:#9A2617; /* Dark Ruby */
+  --math-color: #9A2617; /* Dark Ruby */
   --link-color: #00008B;
   --link-color-hover: #0000f1;
   --footer-font-size: 0.6rem;
+  --background-color: #FFF;
+  --alternate-background: #003B49; /* Dark Cyan */
+  --alternate-color: #FFF;
+  --running-title: '';
 }
+
 html {
+  height: 100%;
+  /* the font needs to scale with the slide size */
   font-size: 2.66vw;
 }
 @media (min-aspect-ratio: 16/10) {
@@ -28,51 +36,55 @@ html {
     --slide-height: 100vh;
   }
   html {
-    font-size: 4.25vh;
+    font-size: 4.25vh; /* =(normal font-size)*16/10 */
   }
 }
+
+/*********************************************
+ * BACKGROUND
+ *********************************************/
 body {
-  margin: 0;
-}
-html,
-body,
-main {
-  height: 100%;
-  min-height: var(--slide-height);
-}
-main {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-flow: column nowrap;
-  /* font-family: monospace; */
   background-color: #eee;
   margin: 0;
-  font-family: var(--main-font);
-  font-weight: normal;
-  color: var(--main-color);
+  padding: 0;
+  height: 100%;
 }
 
+/*********************************************
+ * VIEWPORT FOR THE SLIDES
+ *********************************************/
 article {
+  font-family: var(--main-font);
+  font-weight: normal;
+  font-size: var(--main-font-size);
+  color: var(--main-color);
   display: flex;
   flex: none;
-  width: var(--slide-width);
-  height: var(--slide-height);
-  /* scroll-snap */
   counter-reset: slides;
-  filter: drop-shadow(0 0 0.2rem #666);
 }
 
 @media screen {
   article {
     margin: auto 0;
+    width: var(--slide-width);
+    height: var(--slide-height);
+    /* scroll-snap */
     scroll-snap-type: x mandatory;
     flex-flow: row nowrap;
     overflow-x: auto;
     overflow-y: hidden;
+    /* drop shadow */
+    filter: drop-shadow(0 0 0.2rem #666);
   }
 }
 
+/*********************************************
+ * PDF SETTINGS
+ *********************************************/
 @media print {
   article {
     flex-flow: column nowrap;
@@ -93,34 +105,39 @@ article {
    margin: 0; 
 }
 
-
+/*********************************************
+ * SLIDE
+ *********************************************/
 section {
   text-align: center;
   scroll-snap-align: center;
   scroll-snap-stop: always;
   flex: none;
-  /* line-height: 1.5rem; */
+  line-height: var(--main-line-height);
   /* height: 50vw; */
   height: 100%;
   width: 100%;
   counter-increment: slides;
   position: relative;
-  background-color: #FFF;
+  background-color: var(--background-color);
 }
 /* coloration */
-section.dark-cyan {
-  background-color: var(--dark-background);
+section.alternate-style {
+  background-color: var(--alternate-background);
 }
-section.dark-cyan,
-section.dark-cyan h1,
-section.dark-cyan h2,
-section.dark-cyan h3,
-section.dark-cyan h4,
-section.dark-cyan h5,
-section.dark-cyan h6 {
-  color: #fff;
+section.alternate-style,
+section.alternate-style h1,
+section.alternate-style h2,
+section.alternate-style h3,
+section.alternate-style h4,
+section.alternate-style h5,
+section.alternate-style h6 {
+  color: var(--alternate-color);
 }
 
+/*********************************************
+ * FOOTER
+ *********************************************/
 section:not(:first-child)::before {
   content: var(--running-title);
   position: absolute;
@@ -134,8 +151,8 @@ section:not(:first-child)::before {
   display: grid;
   place-content: center;
   font-size: var(--footer-font-size);
-  color: white;
-  background-color: var(--dark-background);
+  color: var(--alternate-color);
+  background-color: var(--alternate-background);
   padding: 0.1rem 0;
 }
 section:not(:first-child)::after {
@@ -148,14 +165,16 @@ section:not(:first-child)::after {
   display: grid;
   place-content: center;
   font-size: var(--footer-font-size);
-  color: white;
-  background-color: var(--dark-background);
+  color: var(--alternate-color);
+  background-color: var(--alternate-background);
   padding: 0.1rem 0;
 }
 
-/* styling */
+/*********************************************
+ * PARAGRAPHS AND HEADINGS
+ *********************************************/
 section p {
-  margin: 0.5rem 0;
+  margin: 0.5rem 1rem;
   line-height: 1.3;
 }
 section h1,
@@ -193,10 +212,6 @@ section h4 {
   margin: 0.5rem 0;
   line-height: 1.3;
 }
-section p {
-  margin: 0.5rem 0;
-  line-height: 1.3;
-}
 /* Remove trailing margins after titles */
 section h1:last-child,
 section h2:last-child,
@@ -204,7 +219,53 @@ section h3:last-child,
 section h4:last-child,
 section h5:last-child,
 section h6:last-child {
-  margin-bottom: 0; }
+  margin-bottom: 0;
+}
+
+/*********************************************
+ * LISTS
+ *********************************************/
+section > ul,
+section > ol { /* top level ul/ol */
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+section ol,
+section dl,
+section ul {
+  display: inline-block;
+  text-align: left;
+  margin: 0 0 0 1rem;
+}
+
+section li:not(:first-child) {
+  margin-top: 0.5rem;
+}
+
+section ol {
+  list-style-type: decimal;
+}
+
+section ul {
+  list-style-type: disc;
+}
+
+section ul ul {
+  list-style-type: square;
+}
+
+section ul ul ul {
+  list-style-type: circle;
+}
+
+section ul ul,
+section ul ol,
+section ol ol,
+section ol ul {
+  display: block;
+  margin: 0.25rem 0 0 1.25rem;
+}
+
 /*********************************************
  * COLUMNS
  *********************************************/
@@ -220,7 +281,20 @@ one-col:not(:first-child) {
   margin-left: 1rem;
 }
 
-math {
+/*********************************************
+ * MATH
+ *********************************************/
+section math {
   color: var(--math-color);
   font-size: 1.2rem;
+}
+/*********************************************
+ * CODE
+ *********************************************/
+section pre {
+  font-size: 0.55rem;
+  text-align: left;
+  word-wrap: break-word;
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
