@@ -4,11 +4,11 @@
 <title>Snapslides</title>
 <link rel="stylesheet" href="snapslides.css">
 
-<!-- for syntax highlighting -->
+<!-- begin syntax highlighting -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 <script>hljs.highlightAll();</script>
-<!-- -- -->
+<!-- end syntax highlighting -->
 
 <style>
   :root {
@@ -16,46 +16,98 @@
   }
 </style>
 
-<article>
-  <section class="alternate-style">
+<!-- <body class="dev"> -->
+<article tabindex="1" id="viewport">
+  <section class="alt-style">
     <p>&nbsp;
     <h1>Snapslides</h1>
-    <p><strong>Slides in HTML without JavaScript.</strong>
-  </section>
-  <section>
+    <p><strong>Slide decks in HTML with pure CSS*.</strong>
     <p>&nbsp;
+    <ul class="nomarker"><li><em>To go to the next slide:</em>
+      <li>On desktop:&thinsp; <em>press right arrow or scroll horizontally</em><br>
+      On mobile:&thinsp; <em>just swipe!</em>
+    </ul>
     <p>&nbsp;
-    <h2>Section heading</h2>
+    <p><small>*Some JavaScript has been used; e.g., for syntax highlighting of code samples.</small>
   </section>
   <section>
-    <h3>The slides can be printed</h3>
-    <p>With Chrome
+    <h3>How does it work?</h3>
+    <p>The slide container has this CSS property:
+    <pre><code class="language-css">
+scroll-snap-type: x mandatory;
+    </code></pre>
+    <p>and the slides themselves have this property:
+    <pre><code class="language-css">
+scroll-snap-stop: always;
+    </code></pre>
+    <p>Together, they ensure that the browser will always scroll by exactly one slide.
+    <p><small>Hat tip to <a href="https://css-tricks.com/css-scroll-snap-slide-deck/">css-tricks.com</a> for a lot of the ideas used in this.</small>
   </section>
   <section>
-    <h3>Features</h3>
+    <h3>Why do this with only CSS?</h3>
     <ul>
-      <li>Footer
-      <li>Item
+      <li>CSS seems to suffice, so why use anything else?
+      <li>
+      Also, I want to export the slides to PDF to share them with other people,
+      so any dynamic features of JavaScript are useless to me anyway.
+      <li>
+    </ul>
+  </section>
+  <section>
+    <h3>“Can I used Markdown to create slides?”</h3>
+    <p>No. And this is deliberate.
+    <p>&nbsp;</p>
+    <multi-col>
+      <one-col>
         <ul>
-          <li>Nested
+          <li>I love Markdown, but it’s a bad fit for making slides.
+          <li>See how this slide has <strong>two-column</strong> text? This is easy to do in HTML, but how would you do it in Markdown?
+        </ul>
+      </one-col>
+      <one-col>
+        <ul>
+          <li>And what if I want <span style="font-size: 150%">big text</span> or <span style="font-size: 75%">small text</span>?
+        </ul>
+      </one-col>
+    </multi-col>
+  </section>
+  <section>
+    <h3>HTML isn’t so bad, actually</h3>
+    <p>
+    HTML documents used to consist of a lot of boilerplate code,<br>
+      but tags like <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> are optional now,<br>
+      so a fully functional HTML document for <em>Snapslides</em> looks like this:
+    <pre><code class="language-html">
+&lt;!DOCTYPE html&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;Presentation title&lt;/title&gt;
+&lt;link rel="stylesheet" href="snapslides.css"&gt;
+&lt;article tabindex="1" autofocus&gt;        &lt;!-- ensure slide viewport has focus --&gt;
+  &lt;section&gt;        &lt;!-- begin slide --&gt;
+    &lt;h1&gt;Presentation title&lt;/h1&gt;
+  &lt;/section&gt;        &lt;!-- end slide --&gt;
+  &lt;section&gt;
+    &lt;h3&gt;Slide heading&lt;/h3&gt;
+    &lt;p&gt;Some content        &lt;!-- &lt;p&gt; doesn’t need to be closed --&gt;
+  &lt;/section&gt;
+&lt;/article&gt;
+    </code></pre>
+  </section>
+  <section>
+    <h3>“Can I print it/export it to PDF?”</h3>
+    <ul>
+      <li>Yes! That’s actually one of the main goals of <em>Snapslides</em>:<br> to produce good-looking PDFs.
+      <li>It works best in Chrome, because Firefox, for example,<br>
+      doesn’t heed the <code>@page</code> settings from CSS.
+        <ul>
+          <li>But it also looks <em>okay</em> in Firefox. The page size is just wrong.
         </ul>
     </ul>
   </section>
   <section>
-    <p>Some code:
-    <pre><code class="language-python">
-class Vector(Generic[DT, I]):
-    index: Sequence[I]
-    def __init__(self, data: Iterable[DT], length: Len[I]): ...
-    @overload
-    def __getitem__(self, index: I) -&gt; DT: ...
-    @overload
-    def __getitem__(self, index: slice[I]) -&gt; DT: ...
-    </code></pre>
-  </section>
-  <section>
-    <h3>Use anything that works in HTML</h3>
-    <p>Like MathML:
+    <h3>“Can I use math notation?”</h3>
+    <p>Of course! Either use MathJax/KaTeX or MathML<br>(might not look good in all browsers yet):
+    <p>&nbsp;</p>
     <math display="block">
       <mrow>
         <msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup>
@@ -82,5 +134,75 @@ class Vector(Generic[DT, I]):
         </mrow>
       </mrow>
     </math>
+    <p>(This is MathML.)
+  </section>
+  <section class="alt-style">
+    <h3>Styling</h3>
+    <ul>
+      <li>Everything here can be styled with CSS.
+      <li>The main CSS file defines a bunch of variables that can be overridden for easy custom styling.
+      <li>Some things are harder to customize; like the aspect ratio of the slides.
+        <ul>
+          <li>The current aspect ratio of 16:10 is backed in pretty deeply into the CSS code.
+        </ul>
+    </ul>
+  </section>
+  <section>
+    <h3>The footer</h3>
+    <ul>
+      <li>The running title in the footer is set with a CSS variable in the HTML document:
+        <pre><code class="language-html">
+&lt;style&gt;
+  :root {
+    --running-title: 'Introduction to Snapslides';
+  }
+&lt;/style&gt;
+        </code></pre>
+        <li>The slide number is implemented as a CSS counter, which unfortunately means it can’t calculate the <em>total</em> number of slides on its own.
+          <ul>
+            <li>But with a line of JavaScript, we can determine the total number of slides.
+          </ul>
+    </ul>
+  </section>
+  <section>
+    <h3>Recommendations for writing HTML</h3>
+    <ul>
+      <li>Try not to use <code>&lt;span style="..."&gt;</code> or <code>&lt;div style="..."&gt;</code>.
+      <li>Instead, use more semantically meaningful elements, like <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;small&gt;</code>, or <code>&lt;code&gt;</code>.
+      <li>If there is no existing HTML that fits your use-case, define your own! You can just use custom elements in HTML as long as they contain a hyphen:
+    </ul>
+    <multi-col>
+      <one-col>
+        <pre><code class="language-css">
+multi-col {
+  display: flex;
+}
+one-col {
+  flex: 1;
+}
+        </code></pre>
+      </one-col>
+      <one-col>
+        <pre><code class="language-html">
+&lt;multi-col&gt;
+  &lt;one-col&gt;
+    &lt;p&gt;Column 1
+  &lt;/one-col&gt;
+  &lt;one-col&gt;
+    &lt;p&gt;Column 2
+  &lt;/one-col&gt;
+&lt;/multi-col&gt;
+        </code></pre>
+      </one-col>
+    </multi-col>
   </section>
 </article>
+
+<script>
+  // this is needed for compatibility with Firefox
+  document.getElementById("viewport").focus();
+  // set the total number of slides
+  document.querySelector(':root').style.setProperty(
+    "--total-slide-num",
+    `'${document.getElementById("viewport").childElementCount.toString()}'`);
+</script>
