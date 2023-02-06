@@ -5,6 +5,7 @@
   --slide-height: 62.5vw;
   --main-color: #424242;
   --main-font-size: 1rem;
+  --main-font-weight: normal;
   --main-line-height: 1.3;
   --heading-color: #003B49;
   --heading-font-weight: bold;
@@ -44,14 +45,24 @@ html {
  * BACKGROUND
  *********************************************/
 body {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-flow: column nowrap;
-  background-color: #eee;
+  /* normalize */
   margin: 0;
   padding: 0;
-  height: 100%;
+}
+
+@media screen {
+  /* these settings are not needed for printing */
+  body {
+    height: 100%;
+    background-color: #eee;
+  }
+  /* presentation settings (non-dev) */
+  body:not(.dev) {
+    /* center the viewport both vertically and horizontally */
+    display: flex;
+    align-items: center; /* horizontal alignment */
+    justify-content: center; /* vertial alignment */
+  }
 }
 
 /*********************************************
@@ -59,25 +70,59 @@ body {
  *********************************************/
 article {
   font-family: var(--main-font);
-  font-weight: normal;
+  font-weight: var(--main-font-weight);
   font-size: var(--main-font-size);
   color: var(--main-color);
-  display: flex;
-  flex: none;
+  flex: none; /* no actual flexing is happening with this element */
   counter-reset: slides;
 }
 
 @media screen {
-  article {
-    margin: auto 0;
+  /* these settings are not needed for printing */
+  body:not(.dev) > article {
     width: var(--slide-width);
     height: var(--slide-height);
+
     /* scroll-snap */
     scroll-snap-type: x mandatory;
+
+    /* display the slides in a row */
+    display: flex;
     flex-flow: row nowrap;
     overflow-x: auto;
-    overflow-y: hidden;
+
     /* drop shadow */
+    filter: drop-shadow(0 0 0.2rem #666);
+  }
+}
+
+/*********************************************
+ * SLIDE
+ *********************************************/
+section {
+  flex: none; /* no actual flexing is happening with this element */
+  text-align: center;
+  line-height: var(--main-line-height);
+  overflow: hidden; /* if the slide has too much content, it gets cut off */
+  counter-increment: slides;
+  position: relative;
+  background-color: var(--background-color);
+}
+
+@media screen {
+  /* these settings are not needed for printing */
+  section {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    height: 100%;
+    width: 100%;
+  }
+
+  /* dev settings */
+  body.dev > article > section {
+    width: var(--slide-width);
+    height: var(--slide-height);
+    margin-bottom: 2rem;
     filter: drop-shadow(0 0 0.2rem #666);
   }
 }
@@ -85,43 +130,23 @@ article {
 /*********************************************
  * PDF SETTINGS
  *********************************************/
-@media print {
-  article {
-    flex-flow: column nowrap;
-    /* width: 297mm; */
-    width: 296mm;
-    /* height: 210mm; */
-    height: 185mm;
-    filter: initial;
-    margin: 0;
-  }
-  section {
-    break-inside: avoid;
-  }
-}
 @page {
-   /* size: A4 landscape; */
-   size: 296mm 186mm;
-   margin: 0; 
+  /* TODO: find out why I can't set this to 185mm */
+  size: 296mm 186mm;
+  margin: 0;
+}
+@media print {
+  section {
+    width: 296mm;
+    height: 185mm;
+
+    break-inside: avoid; /* one slide per page */
+  }
 }
 
 /*********************************************
- * SLIDE
+ * COLORATION
  *********************************************/
-section {
-  text-align: center;
-  scroll-snap-align: center;
-  scroll-snap-stop: always;
-  flex: none;
-  line-height: var(--main-line-height);
-  /* height: 50vw; */
-  height: 100%;
-  width: 100%;
-  counter-increment: slides;
-  position: relative;
-  background-color: var(--background-color);
-}
-/* coloration */
 section.alternate-style {
   background-color: var(--alternate-background);
 }
@@ -148,8 +173,8 @@ section:not(:first-child)::before {
   /* width: 1.65em; */
   width: 100%;
   /* height: 1.65em; */
-  display: grid;
-  place-content: center;
+  /* display: grid;
+  place-content: center; */
   font-size: var(--footer-font-size);
   color: var(--alternate-color);
   background-color: var(--alternate-background);
@@ -162,8 +187,8 @@ section:not(:first-child)::after {
   right: 1rem;
   /* width: 1.65em; */
   /* height: 1.65em; */
-  display: grid;
-  place-content: center;
+  /* display: grid;
+  place-content: center; */
   font-size: var(--footer-font-size);
   color: var(--alternate-color);
   background-color: var(--alternate-background);
