@@ -21,7 +21,8 @@
   <section class="alt-style">
     <p>&nbsp;
     <h1>Snapslides</h1>
-    <p><strong>Slide decks in HTML with pure CSS*.</strong>
+    <!-- <p><strong>Slide decks in HTML with pure CSS*.</strong> -->
+    <h3>Slide decks in HTML with pure CSS*.</h3>
     <p>&nbsp;
     <ul class="nomarker"><li><em>To go to the next slide:</em>
       <li>On desktop:&thinsp; <em>press right arrow or scroll horizontally</em><br>
@@ -32,14 +33,20 @@
   </section>
   <section>
     <h3>How does it work?</h3>
-    <p>The slide container has this CSS property:
-    <pre><code class="language-css">
-scroll-snap-type: x mandatory;
-    </code></pre>
-    <p>and the slides themselves have this property:
-    <pre><code class="language-css">
-scroll-snap-stop: always;
-    </code></pre>
+    <multi-col>
+      <one-col>
+        <p>The slide container has this CSS property:</p>
+        <pre><code class="language-css">
+    scroll-snap-type: x mandatory;
+        </code></pre>
+      </one-col>
+      <one-col>
+        <p>and the slides themselves have this property:</p>
+        <pre><code class="language-css">
+    scroll-snap-stop: always;
+        </code></pre>
+      </one-col>
+    </multi-col>
     <p>Together, they ensure that the browser will always scroll by exactly one slide.
     <p><small>Hat tip to <a href="https://css-tricks.com/css-scroll-snap-slide-deck/">css-tricks.com</a> for a lot of the ideas used in this.</small>
   </section>
@@ -169,29 +176,32 @@ scroll-snap-stop: always;
     <ul>
       <li>Try not to use <code>&lt;span style="..."&gt;</code> or <code>&lt;div style="..."&gt;</code>.
       <li>Instead, use more semantically meaningful elements, like <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;small&gt;</code>, or <code>&lt;code&gt;</code>.
-      <li>If there is no existing HTML that fits your use-case, define your own! You can just use custom elements in HTML as long as they contain a hyphen:
+      <li>If there is no existing HTML that fits your use-case, define your own!
     </ul>
-    <multi-col>
+    <multi-col style="margin-top: 1rem">
       <one-col>
-        <pre><code class="language-css">
-multi-col {
-  display: flex;
-}
-one-col {
-  flex: 1;
-}
+        <h4>HTML for a multi-column element</h4>
+        <pre><code class="language-html">
+&lt;multi-col&gt;   &lt;!-- needs hyphen in name --&gt;
+  &lt;one-col&gt;
+    &lt;p&gt;HTML for a multi-column element [...]
+  &lt;/one-col&gt;
+  &lt;one-col&gt;
+    &lt;p&gt;CSS [...]
+  &lt;/one-col&gt;
+&lt;/multi-col&gt;
         </code></pre>
       </one-col>
       <one-col>
-        <pre><code class="language-html">
-&lt;multi-col&gt;
-  &lt;one-col&gt;
-    &lt;p&gt;Column 1
-  &lt;/one-col&gt;
-  &lt;one-col&gt;
-    &lt;p&gt;Column 2
-  &lt;/one-col&gt;
-&lt;/multi-col&gt;
+        <h4>CSS</h4>
+        <pre><code class="language-css">
+multi-col {
+  display: flex;
+  flex-flow: row nowrap;
+}
+one-col {
+  flex: 1 1 0;
+}
         </code></pre>
       </one-col>
     </multi-col>
