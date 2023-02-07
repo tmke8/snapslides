@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Average&family=Oswald&display=swap');
+:root {
+  --background-color: #37474F;
+  --main-color: #CACACA;
+  --main-font: "Average", serif;
+  --main-font-size: 1.2rem;
+  --main-font-weight: normal;
+  --main-line-height: 1.3;
+  --small-font-size: 0.6rem;
+  --block-margin: 0.5rem;
+  --side-margin: 2rem;
+  --heading-margin: 1.5rem 1rem 1.5rem 1rem;
+  --heading-font: "Oswald", sans-serif;
+  --heading-color: #FFF;
+  --heading-line-height: 1.2;
+  --heading-letter-spacing: normal;
+  --heading-text-transform: none;
+  --heading-text-shadow: none;
+  --heading-font-weight: normal;
+  --heading1-text-shadow: none;
+  --heading1-size: 3.77rem;
+  --heading2-size: 2.45rem;
+  --heading3-size: 1.9rem;
+  --heading4-size: 1rem;
+  --code-font: monospace;
+  --math-color: #9A2617; /* Dark Ruby */
+  --link-color: #51483D;
+  --link-color-hover: #8b7c69;
+  --footer-color: #37474F;
+  --footer-font-size: 0.6rem;
+  --footer-background: #CACACA;
+  --alt-background: #E0E0E0;
+  --alt-color: #37474F;
+}
+
+section.alt-style h2 {
+  text-align: left;
+}

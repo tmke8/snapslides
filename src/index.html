@@ -17,8 +17,8 @@
 </style>
 
 <!-- <body class="dev"> -->
-<article tabindex="1" id="viewport">
-  <section class="alt-style">
+<article>
+  <section class="alt-style" tabindex="1" id="first-slide">
     <p>&nbsp;
     <h1>Snapslides</h1>
     <!-- <p><strong>Slide decks in HTML with pure CSS*.</strong> -->
@@ -36,15 +36,11 @@
     <multi-col>
       <one-col>
         <p>The slide container has this CSS property:</p>
-        <pre><code class="language-css">
-    scroll-snap-type: x mandatory;
-        </code></pre>
+        <pre><code class="language-css">scroll-snap-type: x mandatory;</code></pre>
       </one-col>
       <one-col>
         <p>and the slides themselves have this property:</p>
-        <pre><code class="language-css">
-    scroll-snap-stop: always;
-        </code></pre>
+        <pre><code class="language-css">scroll-snap-stop: always;</code></pre>
       </one-col>
     </multi-col>
     <p>Together, they ensure that the browser will always scroll by exactly one slide.
@@ -84,8 +80,8 @@
     HTML documents used to consist of a lot of boilerplate code,<br>
       but tags like <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> are optional now,<br>
       so a fully functional HTML document for <em>Snapslides</em> looks like this:
-    <pre><code class="language-html">
-&lt;!DOCTYPE html&gt;
+      </p>
+    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;title&gt;Presentation title&lt;/title&gt;
 &lt;link rel="stylesheet" href="snapslides.css"&gt;
@@ -97,8 +93,7 @@
     &lt;h3&gt;Slide heading&lt;/h3&gt;
     &lt;p&gt;Some content        &lt;!-- &lt;p&gt; doesn’t need to be closed --&gt;
   &lt;/section&gt;
-&lt;/article&gt;
-    </code></pre>
+&lt;/article&gt;</code></pre>
   </section>
   <section>
     <h3>“Can I print it/export it to PDF?”</h3>
@@ -158,13 +153,11 @@
     <h3>The footer</h3>
     <ul>
       <li>The running title in the footer is set with a CSS variable in the HTML document:
-        <pre><code class="language-html">
-&lt;style&gt;
+        <pre><code class="language-html">&lt;style&gt;
   :root {
     --running-title: 'Introduction to Snapslides';
   }
-&lt;/style&gt;
-        </code></pre>
+&lt;/style&gt;</code></pre>
         <li>The slide number is implemented as a CSS counter, which unfortunately means it can’t calculate the <em>total</em> number of slides on its own.
           <ul>
             <li>But with a line of JavaScript, we can determine the total number of slides.
@@ -181,28 +174,24 @@
     <multi-col style="margin-top: 1rem">
       <one-col>
         <h4>HTML for a multi-column element</h4>
-        <pre><code class="language-html">
-&lt;multi-col&gt;   &lt;!-- needs hyphen in name --&gt;
+        <pre><code class="language-html">&lt;multi-col&gt;   &lt;!-- needs hyphen in name --&gt;
   &lt;one-col&gt;
     &lt;p&gt;HTML for a multi-column element [...]
   &lt;/one-col&gt;
   &lt;one-col&gt;
     &lt;p&gt;CSS [...]
   &lt;/one-col&gt;
-&lt;/multi-col&gt;
-        </code></pre>
+&lt;/multi-col&gt;</code></pre>
       </one-col>
       <one-col>
         <h4>CSS</h4>
-        <pre><code class="language-css">
-multi-col {
+        <pre><code class="language-css">multi-col {
   display: flex;
   flex-flow: row nowrap;
 }
 one-col {
   flex: 1 1 0;
-}
-        </code></pre>
+}</code></pre>
       </one-col>
     </multi-col>
   </section>
@@ -210,9 +199,9 @@ one-col {
 
 <script>
   // this is needed for compatibility with Firefox
-  document.getElementById("viewport").focus();
+  document.getElementById("first-slide").focus();
   // set the total number of slides
   document.querySelector(':root').style.setProperty(
     "--total-slide-num",
-    `'${document.getElementById("viewport").childElementCount.toString()}'`);
+    `'${document.getElementsByTagName("article")[0].childElementCount.toString()}'`);
 </script>

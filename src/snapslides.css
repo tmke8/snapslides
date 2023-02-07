@@ -29,7 +29,9 @@
   --math-color: #9A2617; /* Dark Ruby */
   --link-color: #00008B;
   --link-color-hover: #0000f1;
+  --footer-color: #FFF;
   --footer-font-size: 0.6rem;
+  --footer-background: #003B49; /* Dark Cyan */
   --alt-background: #003B49; /* Dark Cyan */
   --alt-color: #FFF;
 
@@ -182,7 +184,7 @@ section.alt-style h6 {
 /*********************************************
  * FOOTER
  *********************************************/
-section:not(:first-child)::before {
+section:not(:first-child, .alt-style)::before {
   content: var(--running-title);
   position: absolute;
   /* bottom: 0.25rem;
@@ -195,11 +197,11 @@ section:not(:first-child)::before {
   /* display: grid;
   place-content: center; */
   font-size: var(--footer-font-size);
-  color: var(--alt-color);
-  background-color: var(--alt-background);
+  color: var(--footer-color);
+  background-color: var(--footer-background);
   padding: 0.1rem 0;
 }
-section:not(:first-child)::after {
+section:not(:first-child, .alt-style)::after {
   content: counter(slides) "/" var(--total-slide-num);
   position: absolute;
   bottom: 0;
@@ -209,8 +211,8 @@ section:not(:first-child)::after {
   /* display: grid;
   place-content: center; */
   font-size: var(--footer-font-size);
-  color: var(--alt-color);
-  background-color: var(--alt-background);
+  color: var(--footer-color);
+  background-color: var(--footer-background);
   padding: 0.1rem 0;
 }
 

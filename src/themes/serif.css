@@ -45,8 +45,8 @@ section a {
   /* --selection-background-color: #26351C; */
   /* --selection-color: #fff; */
   --footer-font-size: 0.6rem;
-  --alt-background: #F0F1EB;
-  --alt-color: #000;
+  --footer-background: #F0F1EB;
+  --footer-color: #000;
 }
 
 section .slides section,
