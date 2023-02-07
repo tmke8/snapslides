@@ -77,8 +77,8 @@ body {
   body:not(.dev) {
     /* center the viewport both vertically and horizontally */
     display: flex;
-    align-items: center; /* horizontal alignment */
-    justify-content: center; /* vertial alignment */
+    align-items: center; /* vertical alignment */
+    justify-content: center; /* horizontal alignment */
   }
 }
 

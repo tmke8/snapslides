@@ -33,6 +33,12 @@
   --alt-color: #37474F;
 }
 
+section.alt-style {
+  display: flex;
+  align-items: center;
+}
 section.alt-style h2 {
+  margin-top: 0;
+  margin-bottom: 0;
   text-align: left;
 }

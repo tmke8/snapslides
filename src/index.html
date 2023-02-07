@@ -3,6 +3,7 @@
 <meta charset="utf-8">
 <title>Snapslides</title>
 <link rel="stylesheet" href="snapslides.css">
+<!-- <link rel="stylesheet" media="(prefers-color-scheme: dark)" href="themes/slate.css"> -->
 
 <!-- begin syntax highlighting -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css">
@@ -108,8 +109,9 @@
   </section>
   <section>
     <h3>“Can I use math notation?”</h3>
-    <p>Of course! Either use MathJax/KaTeX or MathML<br>(might not look good in all browsers yet):
-    <p>&nbsp;</p>
+    <p>Of course! Either use MathJax/KaTeX or MathML.
+    <p>&nbsp;
+    <p>This is MathML:</p>
     <math display="block">
       <mrow>
         <msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup>
@@ -136,7 +138,8 @@
         </mrow>
       </mrow>
     </math>
-    <p>(This is MathML.)
+    <p>&nbsp;
+    <p>(might not look good in all browsers yet)
   </section>
   <section class="alt-style">
     <h3>Styling</h3>
@@ -199,7 +202,9 @@ one-col {
 
 <script>
   // this is needed for compatibility with Firefox
-  document.getElementById("first-slide").focus();
+  if (!document.getElementsByTagName("body")[0].classList.contains("dev")) {
+    document.getElementById("first-slide").focus();
+  }
   // set the total number of slides
   document.querySelector(':root').style.setProperty(
     "--total-slide-num",
