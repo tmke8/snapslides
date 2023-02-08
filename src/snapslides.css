@@ -151,6 +151,9 @@ section {
   /* TODO: find out why I can't set this to 185mm */
   size: 296mm 186mm;
   margin: 0;
+
+  /* TODO: remove this work-around for the wrong page size */
+  background-color: var(--alt-background);
 }
 @media print {
   section {
@@ -158,10 +161,6 @@ section {
     height: 185mm;
 
     break-inside: avoid; /* one slide per page */
-  }
-  article {
-    /* TODO: remove this work-around for the wrong page size */
-    background-color: var(--alt-background);
   }
 }
 
