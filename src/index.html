@@ -18,8 +18,8 @@
 </style>
 
 <!-- <body class="dev"> -->
-<article>
-  <section class="alt-style" tabindex="1" id="first-slide">
+<article tabindex="1">
+  <section class="alt-style" id="first-slide">
     <p>&nbsp;
     <h1>Snapslides</h1>
     <!-- <p><strong>Slide decks in HTML with pure CSS*.</strong> -->
@@ -205,7 +205,7 @@ one-col {
 <script>
   // this is needed for compatibility with Firefox
   if (!document.getElementsByTagName("body")[0].classList.contains("dev")) {
-    document.getElementById("first-slide").focus();
+    document.getElementsByTagName("article")[0].focus();
   }
   // set the total number of slides
   document.querySelector(':root').style.setProperty(
