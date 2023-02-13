@@ -26,6 +26,7 @@
   --heading4-size: 1rem;
   --code-font: monospace;
   --code-background: #F0F0F0;
+  --code-color: #900;
   --math-color: #9A2617; /* Dark Ruby */
   --link-color: #00008B;
   --link-color-hover: #0000f1;
@@ -34,6 +35,8 @@
   --footer-background: #003B49; /* Dark Cyan */
   --alt-background: #003B49; /* Dark Cyan */
   --alt-color: #FFF;
+  --counter-bottom: 0;
+  --counter-right: 1rem;
 
   /* internal variables */
   --slide-width: 100vw;
@@ -203,8 +206,8 @@ section:not(:first-child, .alt-style)::before {
 section:not(:first-child, .alt-style)::after {
   content: counter(slides) "/" var(--total-slide-num);
   position: absolute;
-  bottom: 0;
-  right: 1rem;
+  bottom: var(--counter-bottom);
+  right: var(--counter-right);
   /* width: 1.65em; */
   /* height: 1.65em; */
   /* display: grid;
@@ -259,14 +262,14 @@ section h4 {
   line-height: var(--main-line-height);
 }
 /* Remove trailing margins after titles */
-section h1:last-child,
+/* section h1:last-child,
 section h2:last-child,
 section h3:last-child,
 section h4:last-child,
 section h5:last-child,
 section h6:last-child {
   margin-bottom: 0;
-}
+} */
 
 small {
   font-size: var(--small-font-size);
@@ -349,7 +352,7 @@ section math {
 section p code, section li>code {
   font-size: 0.9rem;
   background-color: var(--code-background);
-  color: #900;
+  color: var(--code-color);
   padding: 0 0.1rem 0 0.1rem;
   border-radius: 0.3rem;
   -webkit-hyphens: none;
