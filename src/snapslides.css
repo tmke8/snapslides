@@ -295,6 +295,17 @@ section li:not(:first-child) {
   margin-top: var(--block-margin);
 }
 
+/* nested list */
+section li ol li:not(:first-child),
+section li ul li:not(:first-child) {
+  margin-top: 0.25rem;
+}
+
+section li ol li:first-child,
+section li ul li:first-child {
+  margin-top: 0.15rem;
+}
+
 section ol {
   list-style-type: decimal;
 }
@@ -320,7 +331,7 @@ section ul ol,
 section ol ol,
 section ol ul {
   display: block;
-  margin: 0.25rem 0 0 1.25rem;
+  /* margin: 0.25rem 0 0 1.25rem; */
 }
 
 /*********************************************
@@ -381,3 +392,35 @@ section a {
 section a:hover {
   color: var(--link-color-hover);
 }
+
+/*********************************************
+ * BLOCKQUOTE
+ *********************************************/
+blockquote {
+  background: #e9e9e9;
+  /* border-left: 10px solid #ccc; */
+  margin: 1.5rem 1rem;
+  padding: 0.5rem 1rem;
+  font-style: italic;
+  line-height: 170%;
+  /* quotes: "\201C""\201D""\2018""\2019"; */
+}
+/* blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote:after {
+  color: #ccc;
+  content: close-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+blockquote p {
+  display: inline;
+} */
