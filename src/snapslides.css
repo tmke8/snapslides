@@ -424,3 +424,10 @@ blockquote:after {
 blockquote p {
   display: inline;
 } */
+
+/*********************************************
+ * TABLE
+ *********************************************/
+table {
+  margin-left: var(--side-margin);
+}
