@@ -15,6 +15,16 @@
   :root {
     --running-title: 'Introduction to Snapslides';
   }
+  @font-face {
+    font-family: Noto Sans Math Regular;
+    src: url("https://tmke8.github.io/math-core/fonts/NotoSansMath-Regular-centered-diacritics-primes.woff2")
+        format("woff2");
+    font-display: swap;
+  }
+  math {
+    font-family: "Noto Sans Math Regular", math;
+    font-feature-settings: "dtls" 0;
+  }
 </style>
 
 <!-- <body class="dev"> -->
@@ -54,7 +64,6 @@
       <li>
       Also, I want to export the slides to PDF to share them with other people,
       so any dynamic features of JavaScript are useless to me anyway.
-      <li>
     </ul>
   </section>
   <section>
@@ -78,7 +87,7 @@
   <section>
     <h3>HTML isn’t so bad, actually</h3>
     <p>
-    HTML documents used to consist of a lot of boilerplate code,<br>
+      HTML documents used to consist of a lot of boilerplate code,<br>
       but tags like <code>&lt;html&gt;</code>, <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> are optional now,<br>
       so a fully functional HTML document for <em>Snapslides</em> looks like this:
       </p>
@@ -112,34 +121,53 @@
     <p>Of course! Either use MathJax/KaTeX or MathML.
     <p>&nbsp;
     <p>This is MathML:</p>
-    <math display="block">
-      <mrow>
-        <msubsup><mo>∫</mo><mn>0</mn><mn>1</mn></msubsup>
-        <msup><mi>x</mi><mi>x</mi></msup>
-        <mspace width="0.167em" />
-        <mi mathvariant="normal">d</mi><mspace width="0" /><mi>x</mi>
-        <mo>=</mo>
-        <munderover>
-          <mo>∑</mo>
-          <mrow><mi>n</mi><mo>=</mo><mn>1</mn></mrow>
-          <mo accent="false">∞</mo>
-        </munderover>
+<math display="block">
+    <semantics>
         <mrow>
-          <msup>
-            <mrow>
-              <mo stretchy="false" form="prefix">(</mo>
-              <mo form="prefix">−</mo><mn>1</mn>
-              <mo stretchy="false" form="postfix">)</mo>
-            </mrow>
-            <mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow>
-          </msup>
-          <mspace width="0.167em" />
-          <msup><mi>n</mi><mrow><mo>−</mo><mi>n</mi></mrow></msup>
+            <msubsup>
+                <mo lspace="0">∫</mo>
+                <mn>0</mn>
+                <mn>1</mn>
+            </msubsup>
+            <msup>
+                <mi>x</mi>
+                <mi>x</mi>
+            </msup>
+            <mspace width="0.16666667em"/>
+            <mrow><mspace/><mi mathvariant="normal">d</mi></mrow>
+            <mi>x</mi>
+            <mo>=</mo>
+            <munderover>
+                <mo lspace="0" rspace="0">∑</mo>
+                <mrow>
+                    <mi>n</mi>
+                    <mo lspace="0" rspace="0">=</mo>
+                    <mn>1</mn>
+                </mrow>
+                <mi>∞</mi>
+            </munderover>
+            <mo stretchy="false">(</mo>
+            <mo lspace="0" rspace="0">−</mo>
+            <mn>1</mn>
+            <msup>
+                <mo stretchy="false">)</mo>
+                <mrow>
+                    <mi>n</mi>
+                    <mo lspace="0" rspace="0">+</mo>
+                    <mn>1</mn>
+                </mrow>
+            </msup>
+            <msup>
+                <mi>n</mi>
+                <mrow>
+                    <mo lspace="0" rspace="0">−</mo>
+                    <mi>n</mi>
+                </mrow>
+            </msup>
         </mrow>
-      </mrow>
-    </math>
-    <p>&nbsp;
-    <p>(might not look good in all browsers yet)
+        <annotation encoding="application/x-tex">\int_0^1 x^x \mathrm{d}x = \sum_{n=1}^\infty (-1)^{n+1} n^{-n}</annotation>
+    </semantics>
+</math>
   </section>
   <section class="alt-style">
     <h3>Styling</h3>
@@ -148,7 +176,7 @@
       <li>The main CSS file defines a bunch of variables that can be overridden for easy custom styling.
       <li>Some things are harder to customize; like the aspect ratio of the slides.
         <ul>
-          <li>The current aspect ratio of 16:10 is backed in pretty deeply into the CSS code.
+          <li>The current aspect ratio of 16:10 is baked in pretty deeply into the CSS code.
         </ul>
     </ul>
   </section>
@@ -199,6 +227,7 @@ one-col {
     </multi-col>
   </section>
   <section>
+    <h3>Internal links</h3>
     <p><a href="#html-rec">click here</a>
 </article>
 
